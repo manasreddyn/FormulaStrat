@@ -3,3 +3,5 @@ uvicorn
 fastf1
 pandas
 numpy
+requests
+requests-cache
