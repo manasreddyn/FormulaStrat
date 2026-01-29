@@ -32,7 +32,7 @@ export default function Dashboard() {
 
     // Initial Fetch for Race List
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/season/2024/races')
+        fetch('/api/season/2024/races')
             .then(res => res.json())
             .then(data => {
                 setRaces(data);
@@ -47,8 +47,8 @@ export default function Dashboard() {
         setLoading(true);
         async function fetchData() {
             try {
-                const raceRes = await fetch(`http://127.0.0.1:8000/api/race/2024/${selectedRace}/results`);
-                const tyreRes = await fetch(`http://127.0.0.1:8000/api/race/2024/${selectedRace}/tyres`);
+                const raceRes = await fetch(`/api/race/2024/${selectedRace}/results`);
+                const tyreRes = await fetch(`/api/race/2024/${selectedRace}/tyres`);
 
                 if (!raceRes.ok || !tyreRes.ok) throw new Error("API Error");
 

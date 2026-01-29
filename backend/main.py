@@ -5,12 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 import uvicorn
 
-# Create cache directory
-if not os.path.exists('cache'):
-    os.makedirs('cache')
-
-# Enable FastF1 Cache
-fastf1.Cache.enable_cache('cache')
+# Cache Handling for Vercel (read-only filesystem)
+# If running on Vercel, disable cache or use /tmp (imperfect but prevents error)
+if os.environ.get("VERCEL"):
+    fastf1.Cache.enable_cache('/tmp') 
+else:
+    if not os.path.exists('cache'):
+        os.makedirs('cache')
+    fastf1.Cache.enable_cache('cache')
 
 app = FastAPI(title="F1 Tech Hub API", description="API for F1 Data using FastF1")
 

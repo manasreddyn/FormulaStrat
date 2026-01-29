@@ -5,7 +5,7 @@ export default function TechSpecs() {
     const [specs, setSpecs] = useState(null);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/specs')
+        fetch('/api/specs')
             .then(res => res.json())
             .then(data => setSpecs(data))
             .catch(err => console.error("Specs Error", err));

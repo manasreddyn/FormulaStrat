@@ -11,7 +11,7 @@ export default function TeamDetails() {
         async function fetchTeams() {
             try {
                 // Fetch from the new team-stats endpoint. Defaults to 2024.
-                const res = await fetch('http://127.0.0.1:8000/api/season/2024/team-stats');
+                const res = await fetch('/api/season/2024/team-stats');
                 if (!res.ok) throw new Error("API Error");
                 const data = await res.json();
                 setTeams(data);
@@ -30,7 +30,7 @@ export default function TeamDetails() {
         if (!selectedTeam) return;
 
         selectedTeam.drivers.forEach(driver => {
-            fetch(`http://127.0.0.1:8000/api/driver/${driver}/career`)
+            fetch(`/api/driver/${driver}/career`)
                 .then(res => res.json())
                 .then(data => {
                     setDriverStats(prev => ({ ...prev, [driver]: data }));
